@@ -8,6 +8,9 @@ import { Liquid } from 'liquidjs';
 // Maak een nieuwe Express applicatie aan, waarin we de server configureren
 const app = express()
 
+// Hier definieer ik de API URL, waar ik data vandaan wil halen
+const apiUrl = "https://fdnd-agency.directus.app/items/bib_stekjes";
+
 // Maak werken met data uit formulieren iets prettiger
 app.use(express.urlencoded({extended: true}))
 
