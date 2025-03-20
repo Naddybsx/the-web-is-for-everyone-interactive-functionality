@@ -29,8 +29,8 @@ app.engine('liquid', engine.express());
 app.set('views', './views')
 
 // Get route voor de homepage
-app.get('/', function (request, response) {
-   // ----------------- Hier haal ik de stekjes op -----------------
+app.get('/', async function (request, response) {
+  // ----------------- Hier haal ik de stekjes op -----------------
    // Hier doe ik een FETCH naar de API URL
    const stekjesResponse = await fetch(apiUrl);
    // Hier wordt de response omgezet naar JSON
@@ -40,7 +40,8 @@ app.get('/', function (request, response) {
    const afbeeldingenResponse = await fetch(afbeeldingenUrl);
     // Hier wordt de response omgezet naar JSON
    const afbeeldingenResponseJSON = await afbeeldingenResponse.json();
-  response.render('index.liquid')
+    // Hier render ik de index.liquid template, en geef ik de data(stekjes) van de API mee
+   response.render('index.liquid', {stekjes: stekjesResponseJSON.data, afbeeldingen: afbeeldingenResponseJSON.data})
 })
 
 
