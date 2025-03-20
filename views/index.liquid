@@ -3,4 +3,16 @@
 
 <h1>Bieb in bloei</h1>
 
+{% comment %} For loop om te itereren door de stekjeskast afbeeldingen data {% endcomment %}
+{% for afbeelding in afbeeldingen %}
+    <img src="https://fdnd-agency.directus.app/assets/{{ afbeelding.foto }}" alt="Stekjeskast afbeelding">
+{% endfor %}
+
+{% comment %} For loop om te itereren door de stekjes data {% endcomment %}
+{% for stekje in stekjes %}
+    <article>
+        <h3>{{stekje.naam}}</h3>
+        <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{stekje.naam}}">
+    </article>
+{% endfor %}
 {% render 'partials/foot.liquid' %}
