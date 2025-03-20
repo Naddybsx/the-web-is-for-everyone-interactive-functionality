@@ -11,6 +11,8 @@ const app = express()
 // Hier definieer ik de API URL, waar ik data vandaan wil halen
 const apiUrl = "https://fdnd-agency.directus.app/items/bib_stekjes";
 
+const afbeeldingenUrl = "https://fdnd-agency.directus.app/items/bib_afbeeldingen?filter={%20%22type%22:%20{%20%22_eq%22:%20%22stekjes%22%20}}";
+
 // Maak werken met data uit formulieren iets prettiger
 app.use(express.urlencoded({extended: true}))
 
@@ -28,6 +30,16 @@ app.set('views', './views')
 
 // Get route voor de homepage
 app.get('/', function (request, response) {
+   // ----------------- Hier haal ik de stekjes op -----------------
+   // Hier doe ik een FETCH naar de API URL
+   const stekjesResponse = await fetch(apiUrl);
+   // Hier wordt de response omgezet naar JSON
+   const stekjesResponseJSON = await stekjesResponse.json();
+  // ----------------- Hier haal ik de afbeeldingen op -----------------
+    // Hier doe ik een FETCH naar de API URL
+   const afbeeldingenResponse = await fetch(afbeeldingenUrl);
+    // Hier wordt de response omgezet naar JSON
+   const afbeeldingenResponseJSON = await afbeeldingenResponse.json();
   response.render('index.liquid')
 })
 
