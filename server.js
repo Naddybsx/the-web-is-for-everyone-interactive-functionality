@@ -57,6 +57,14 @@ app.get('/stekjes/:id', async function (request, response) {
     response.render('stekjes.liquid', {stekje: stekjeData.data})
 });
 
+app.post('/stekjes/:id', async function (request, response) {
+// Hier komt de code voor het posten van een like naar de API
+  
+  // Stuurt de gebruiker terug naar de detailpagina van het stekje
+  response.redirect(303, `/stekjes/${stekjeId}`);
+});
+
+
 // Stel het poortnummer in waar Express op moet gaan luisteren
 // Lokaal is dit poort 8000; als deze applicatie ergens gehost wordt, waarschijnlijk poort 80
 app.set('port', process.env.PORT || 9000)
