@@ -45,10 +45,16 @@ app.get('/', async function (request, response) {
 })
 
 // Get route voor de detailpagina
-
-app.get('/stekjes', async function (request, response) {
-  // hier komt de detailpagina van de stekjes
-    response.render('stekjes.liquid')
+// Hier maak ik een route aan voor de detailpagina van een stekje, met een dynamische parameter
+app.get('/stekjes/:id', async function (request, response) {
+  // Hier haal ik het stekje op met het juiste ID
+  const stekjeId = request.params.id;
+  // Hier doe ik een FETCH naar de API URL, met het ID van het stekje
+  const stekjeResponse = await fetch(`${apiUrl}/${stekjeId}`);
+  // Hier wordt de response omgezet naar JSON
+  const stekjeData = await stekjeResponse.json();
+  // Hier render ik de stekjes.liquid template, en geef ik de data(stekje) van de API mee
+    response.render('stekjes.liquid', {stekje: stekjeData.data})
 });
 
 // Stel het poortnummer in waar Express op moet gaan luisteren

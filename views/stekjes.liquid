@@ -1,0 +1,7 @@
+{% render 'partials/head.liquid' %}
+ {% include 'partials/nav.liquid' %}
+ <h1>Stekjes detailpagina</h1>
+ <h2>{{stekje.naam}}</h2>
+ <p>{{stekje.beschrijving}}</p>
+ <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{stekje.naam}}">
+ {% render 'partials/foot.liquid' %}
