@@ -57,8 +57,30 @@ app.get('/stekjes/:id', async function (request, response) {
     response.render('stekjes.liquid', {stekje: stekjeData.data})
 });
 
+// Hier maak ik een POST route aan voor het liken van een stekje
 app.post('/stekjes/:id', async function (request, response) {
-// Hier komt de code voor het posten van een like naar de API
+// Hier haal ik het ID uit de URL
+const stekjeId = request.params.id;
+// Dit is hardcoded mijn eigen user ID
+const userId = 4;
+
+// Verstuurt een POST naar de koppeltabel om de like op te slaan
+  // Ik doe een fetch naar het koppeltabel waar ik mijn likes wil opslaan
+  // met post wil ik een like toevoegen aan de database, dus ik gebruik de POST methode
+  // Met headers weet de server dat ik JSON data ga sturen
+  const likeResponse = await fetch('https://fdnd-agency.directus.app/items/bib_users_stekjes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+// De inhoud van de post(like) voeg je toe in de body
+// Hier maak ik twee objecten aan, bib_users_id en bib_stekjes_id
+    body: JSON.stringify({
+      bib_users_id: userId, // Wie liked? (bib_users_id)
+      bib_stekjes_id: stekjeId // Welk stekje wordt geliked? (bib_stekjes_id)
+// Met request.params.id worden de waarden dynamisch ingevuld
+    })
+  });
   
   // Stuurt de gebruiker terug naar de detailpagina van het stekje
   response.redirect(303, `/stekjes/${stekjeId}`);
