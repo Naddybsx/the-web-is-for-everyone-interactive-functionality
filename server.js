@@ -44,6 +44,12 @@ app.get('/', async function (request, response) {
    response.render('index.liquid', {stekjes: stekjesResponseJSON.data, afbeeldingen: afbeeldingenResponseJSON.data})
 })
 
+// Get route voor de detailpagina
+
+app.get('/stekjes', async function (request, response) {
+  // hier komt de detailpagina van de stekjes
+    response.render('stekjes.liquid')
+});
 
 // Stel het poortnummer in waar Express op moet gaan luisteren
 // Lokaal is dit poort 8000; als deze applicatie ergens gehost wordt, waarschijnlijk poort 80
