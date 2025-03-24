@@ -1,7 +1,14 @@
 {% render 'partials/head.liquid' %}
  {% include 'partials/nav.liquid' %}
+ {% comment %} Specifiek stekje details {% endcomment %}
  <h1>Stekjes detailpagina</h1>
  <h2>{{stekje.naam}}</h2>
  <p>{{stekje.beschrijving}}</p>
  <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{stekje.naam}}">
+
+ {% comment %} Hier maak ik een formulier aan voor het posten van een like {% endcomment %}
+ <form method="POST" action="/stekjes/{{ stekje.id }}">
+  <button type="submit">❤️ Like dit stekje</button>
+</form>
+
  {% render 'partials/foot.liquid' %}
