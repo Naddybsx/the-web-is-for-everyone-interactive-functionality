@@ -11,7 +11,8 @@
 {% comment %} For loop om te itereren door de stekjes data {% endcomment %}
 {% for stekje in stekjes %}
     <article>
-        <h3>{{stekje.naam}}</h3>
+        <a href="/stekjes/{{stekje.id}}">
+        <h3>{{stekje.naam}}</h3></a>
         <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{stekje.naam}}">
     </article>
 {% endfor %}
