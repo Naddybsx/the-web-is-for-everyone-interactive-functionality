@@ -64,14 +64,23 @@ const stekjeId = request.params.id;
 // Dit is hardcoded mijn eigen user ID
 const userId = 4;
 
-// Verstuurt een POST naar de koppeltabel om de like op te slaan
-  // Ik doe een fetch naar het koppeltabel waar ik mijn likes wil opslaan
-  // met post wil ik een like toevoegen aan de database, dus ik gebruik de POST methode
-  // Met headers weet de server dat ik JSON data ga sturen
-  const likeResponse = await fetch('https://fdnd-agency.directus.app/items/bib_users_stekjes', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
+// Hiermee check ik of een stekje al is geliked door mij als user, zodat ik kan bepalen of ik een like wil toevoegen of verwijderen
+const userstekjeEntry = await fetch(`https://fdnd-agency.directus.app/items/bib_users_stekjes?filter={"bib_stekjes_id":${stekjeId},"bib_users_id":${userId}}`)
+const userstekjeEntryJSON = await userstekjeEntry.json()
+
+// Als de like al bestaat → verwijder de like (unlike)
+
+if (userstekjeEntryJSON.data.length != 0) { // Als de like al bestaat, dan is de lengte van de array niet 0
+  await fetch(`https://fdnd-agency.directus.app/items/bib_users_stekjes/${userstekjeEntryJSON.data[0].id}`, { // Ik doe een fetch naar de koppeltabel waar ik mijn likes wil verwijderen
+    method: 'DELETE' // Met delete wil ik een like verwijderen uit de database, dus ik gebruik de DELETE methode
+  });
+} else {
+  // Als de like nog niet bestaat → voeg de like toe en verstuur een POST naar de koppeltabel om de like op te slaan
+
+ await fetch('https://fdnd-agency.directus.app/items/bib_users_stekjes', {  // Ik doe een fetch naar het koppeltabel waar ik mijn likes wil opslaan
+    method: 'POST',  // Met post wil ik een like toevoegen aan de database, dus ik gebruik de POST methode
+    headers: {   // Met headers weet de server dat ik JSON data ga sturen
+      'Content-Type': 'application/json' 
     },
 // De inhoud van de post(like) voeg je toe in de body
 // Hier maak ik twee objecten aan, bib_users_id en bib_stekjes_id
