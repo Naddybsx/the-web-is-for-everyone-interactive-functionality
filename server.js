@@ -27,6 +27,7 @@ app.engine('liquid', engine.express());
 // Stel de map met Liquid templates in
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
+//--------------------------------------------------------------------------------------------------------------------//
 
 // Get route voor de homepage
 app.get('/', async function (request, response) {
@@ -43,6 +44,7 @@ app.get('/', async function (request, response) {
     // Hier render ik de index.liquid template, en geef ik de data(stekjes) van de API mee
    response.render('index.liquid', {stekjes: stekjesResponseJSON.data, afbeeldingen: afbeeldingenResponseJSON.data})
 })
+//--------------------------------------------------------------------------------------------------------------------//
 
 // Get route voor de detailpagina
 // Hier maak ik een route aan voor de detailpagina van een stekje, met een dynamische parameter
@@ -56,6 +58,7 @@ app.get('/stekjes/:id', async function (request, response) {
   // Hier render ik de stekjes.liquid template, en geef ik de data(stekje) van de API mee
     response.render('stekjes.liquid', {stekje: stekjeData.data})
 });
+//--------------------------------------------------------------------------------------------------------------------//
 
 // Hier maak ik een POST route aan voor het liken van een stekje
 app.post('/stekjes/:id', async function (request, response) {
@@ -90,11 +93,11 @@ if (userstekjeEntryJSON.data.length != 0) { // Als de like al bestaat, dan is de
 // Met request.params.id worden de waarden dynamisch ingevuld
     })
   });
-  
+}
   // Stuurt de gebruiker terug naar de detailpagina van het stekje
   response.redirect(303, `/stekjes/${stekjeId}`);
 });
-
+//--------------------------------------------------------------------------------------------------------------------//
 
 // Stel het poortnummer in waar Express op moet gaan luisteren
 // Lokaal is dit poort 8000; als deze applicatie ergens gehost wordt, waarschijnlijk poort 80
