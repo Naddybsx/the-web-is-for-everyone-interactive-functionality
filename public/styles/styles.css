@@ -1,6 +1,6 @@
  /* ========== Nav section (mobile first) ========== */
 nav {
-    position: fixed;
+    position: absolute;
     top: 0; left: 0; right: 0;
     display: flex;
     justify-content: space-between;
@@ -84,6 +84,8 @@ h1 {
     align-items: center;
     color: var(--text-color-white);
     position: relative;
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 2em;
 }
 
 @media (min-width: 769px) {
@@ -91,3 +93,60 @@ h1 {
       font-size: 4rem;
     }
 }
+
+/* ========== Stekjeskast section ========== */
+h2 {
+    color: var(--main-color-green);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.stekjeskast-introductie {
+    display: grid;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+article {
+    width: 100%;
+}
+
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 50%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carousel-item {
+    flex: 0 0 80%;
+    scroll-snap-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-item img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.28);
+}
+
+/* Desktop: tekst links, carousel rechts */
+@media (min-width: 768px) {
+    .stekjeskast-introductie {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        text-align: left;
+    }
+}
+/* ========== Stekjes section ========== */

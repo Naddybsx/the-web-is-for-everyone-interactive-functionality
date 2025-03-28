@@ -1,15 +1,36 @@
 {% render 'partials/head.liquid' %}
 {% include 'partials/nav.liquid' %}
 
-
 <header class="hero">
-<h1>Stekjes</h1>
+    <h1>Stekjes</h1>
 </header>
 
-{% comment %} For loop om te itereren door de stekjeskast afbeeldingen data {% endcomment %}
-{% for afbeelding in afbeeldingen %}
-    <img src="https://fdnd-agency.directus.app/assets/{{ afbeelding.foto }}" alt="Stekjeskast afbeelding">
-{% endfor %}
+<main>   
+ <section class="stekjeskast-introductie">
+    <article>
+        <header>
+            <h2>Hoe werkt het?</h2>
+        </header>
+        <p>
+            Bij Buurtcampus Oost kun je de stekjeskast bezoeken om stekjes te ruilen. 
+            Je kunt ook op onze website inzien welke stekjes beschikbaar zijn. 
+            Dit is een geweldige manier voor plantenliefhebbers om met elkaar in contact te komen en planten te delen.
+            Het maakt het gemakkelijk om je favoriete stekjes te vinden en te ruilen met anderen in de buurt, zonder gedoe.
+            Kom langs bij Buurtcampus Oost en ontmoet mede-plantenliefhebbers!
+        </p>
+    </article>
+
+    <section class="carousel-container" aria-label="Stekjeskast afbeeldingen">
+        <div class="carousel">
+            {% comment %} For loop om te itereren door de stekjeskast afbeeldingen data {% endcomment %}
+            {% for afbeelding in afbeeldingen %}
+                <figure class="carousel-item">
+                    <img src="https://fdnd-agency.directus.app/assets/{{ afbeelding.foto }}" alt="Stekjeskast afbeelding">
+                </figure>
+            {% endfor %}
+        </div>
+    </section>
+ </section>
 
 {% comment %} For loop om te itereren door de stekjes data {% endcomment %}
 {% for stekje in stekjes %}
@@ -19,4 +40,5 @@
         <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{stekje.naam}}">
     </article>
 {% endfor %}
+</main>
 {% render 'partials/foot.liquid' %}
