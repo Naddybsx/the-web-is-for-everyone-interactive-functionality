@@ -60,7 +60,7 @@ p {
     font-family: var(--paragraph-font);
     color: var(--text-color-black);
 }
-ul, li {
+ul, li, summary {
     list-style: none;
 }
 a{
