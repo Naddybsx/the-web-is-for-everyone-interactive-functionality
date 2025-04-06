@@ -1,5 +1,5 @@
  /* ========== Nav section (mobile first) ========== */
-nav {
+.main-nav {
     position: absolute;
     top: 0; left: 0; right: 0;
     display: flex;
@@ -150,3 +150,119 @@ article {
     }
 }
 /* ========== Stekjes section ========== */
+
+.stekjes-section {
+    padding: 2rem 1rem;
+    background-color: #2c5130;
+    color: white;
+    border-radius: 2rem;
+    text-align: center;
+}
+  
+.stekjes-section h2 {
+    font-size: 2rem;
+    color: var(--main-color-beige);
+}
+
+.stekjes-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 50%;
+    gap: 1rem;
+    padding: 1rem;
+    scroll-behavior: smooth;
+}
+
+ .stekjes-carousel > .stekje-card {
+    flex: 0 0 clamp(250px, 70vw, 350px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    background: #f9e9c2;
+    color: #2c5130;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    transform: scale(0.95);
+    scroll-snap-align: center;
+}
+
+.stekje-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 1rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.stekje-card h3 {
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+    text-align: left;
+}
+
+.stekje-card figcaption {
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+ }
+
+.button {
+    background-color: #e76f2b;
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 0.5rem;
+    align-self: flex-start;
+    transition: background-color 0.2s ease;
+}
+  
+.button:hover {
+    background-color: #ff8d06;
+}
+
+/* Verbergt de navigatieknoppen op mobiel */
+.carousel-nav {
+    display: none;
+}
+
+/* Toont de knoppen vanaf iPad */
+@media (min-width: 768px) {
+  .carousel-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .carousel-nav button {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: #f9844a;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .carousel-nav button:hover {
+    transform: scale(1.2);
+  }
+    .stekjes-carousel > .stekje-card.active {
+        transform: scale(1.05);
+        opacity: 1;
+        z-index: 1;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+    .stekje-card{
+        opacity: 0.7 ;
+    }
+}

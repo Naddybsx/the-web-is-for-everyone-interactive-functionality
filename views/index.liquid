@@ -32,13 +32,29 @@
     </section>
  </section>
 
-{% comment %} For loop om te itereren door de stekjes data {% endcomment %}
-{% for stekje in stekjes %}
-    <article>
-        <a href="/stekjes/{{stekje.id}}">
-        <h3>{{stekje.naam}}</h3></a>
-        <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{stekje.naam}}">
-    </article>
-{% endfor %}
+ <section aria-label="Beschikbare stekjes" class="stekjes-section">
+    <h2>Beschikbare stekjes</h2>
+  
+    <ul class="stekjes-carousel" role="list">
+      {% for stekje in stekjes %}
+        <li class="stekje-card">
+          <figure>
+            <img src="https://fdnd-agency.directus.app/assets/{{ stekje.foto }}" alt="{{ stekje.naam }}">
+            <figcaption>
+              <h3>{{ stekje.naam }}</h3>
+              <a href="/stekjes/{{ stekje.id }}" class="button">Meer informatie</a>
+            </figcaption>
+          </figure>
+        </li>
+      {% endfor %}
+    </ul>
+  
+    <!-- Carousel buttons (alleen zichtbaar met JS) -->
+    <nav aria-label="Carrousel navigatie" class="carousel-nav" hidden>
+      <button id="prev" aria-label="Vorige stekje">❮</button>
+      <button id="next" aria-label="Volgende stekje">❯</button>
+    </nav>
+  </section>
+  
 </main>
 {% render 'partials/foot.liquid' %}
